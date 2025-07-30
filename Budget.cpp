@@ -1,6 +1,6 @@
 #include "Budget.h"
 
-Budget::Budget(string name, double income, double expenses, double targetSavings, double currentSavaings){
+Budget::Budget(string name, double income, double expenses, double targetSavings, double currentSavings){
     static int lastAccNum = 0;
     mAccNum = ++lastAccNum;
 
@@ -8,7 +8,7 @@ Budget::Budget(string name, double income, double expenses, double targetSavings
     mIncome = income;
     mExpenses = expenses;
     mTargetSavings = targetSavings;
-    mCurrentSavings = currentSavaings;
+    mCurrentSavings = currentSavings;
 
 }
 
@@ -18,13 +18,13 @@ bool Budget::operator== (const Budget& other) const {
            mTargetSavings == other.mTargetSavings && mCurrentSavings == other.mCurrentSavings;
 }
 
-ostream& operator<<(ostream& os, const Budget& budget) {
-    os << "Name: " << budget.mName << "\n"
-       << "Account Number: " << budget.mAccNum << "\n"
-       << "Income: $" << budget.mIncome << "\n"
-       << "Expenses: $" << budget.mExpenses << "\n"
-       << "Target Savings: $" << budget.mTargetSavings << "\n"
-       << "Current Savings: $" << budget.mCurrentSavings;
+ostream& operator<<(ostream& os, const Budget& s) {
+    os << "[Name: " << s.mName << "\n"
+       << "Account Number: " << s.mAccNum << "\n"
+       << "Income: $" << s.mIncome << "\n"
+       << "Expenses: $" << s.mExpenses << "\n"
+       << "Target Savings: $" << s.mTargetSavings << "\n"
+       << "Current Savings: $" << s.mCurrentSavings << "]" << endl;
     return os;
 }
 

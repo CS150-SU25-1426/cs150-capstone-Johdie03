@@ -1,13 +1,16 @@
 #include <iostream>
 #include "Budget.h"
+#include "BudgetList.h"
 
 using namespace std;
 
 int main() {
     //BudgetList add list of accounts
-    string name;
+	BudgetList accountList;
+    string name, expenseName;
     int accNum;
     double income, expenses, targetSavings, currentSavings;
+
 
 	int expensesCount=0;
 	double indivExpense = 0.0;
@@ -38,40 +41,49 @@ int main() {
 		{ 
             cout << "Please enter your name: ";
             getline(cin, name);
-            cout << "Enter your estimated income per month: ";
+            cout << "Enter your estimated income per month: $";
             cin >> income;
 			cout << "How many expenses would you like to add? ";
 			cin >> expensesCount;
-			cin.ignore(); 
 
+			indivExpense = 0.0; //must reset expenses so it doesnt add up to new accounts
 			for (int i = 0; i < expensesCount; ++i) {
-				cout << "Enter expense " << (i + 1) << ": ";
+				cout << "What is your expense #" << (i + 1) << " ? ";
+				cin >> expenseName;
+				cout << "How much is " << expenseName << "? $";
 				cin >> indivExpense;
 				cin.ignore();
 
 				expenses += indivExpense; 
 			}
 
-            cout << "Enter your target savings per month: ";
+            cout << "Enter your target savings per month: $";
             cin >> targetSavings;
-            cout << "Enter your current savings: ";
+            cout << "Enter your current savings: $";
             cin >> currentSavings;
-
-			
-
-
 
 
 
             Budget newBudget(name, income, expenses, targetSavings, currentSavings);
             //add new account to list
+			accountList.addAccount(newBudget);
+
+			cout << newBudget.calculatingMonthlySavings();
 
 
 			cout << endl;
 			break;
 		}
 		case 2: //REMOVE
+			cout << accountList <<endl;
+			cout << "\nWhich Account Number would you like to remove? >> ";
+			cin >> accNum;
 
+			if (accountList.removeAccount(accNum)){
+				cout << "Account #" << accNum << " has been removed!\n\n";
+			} else {
+				cout << "Account #" << accNum << " cannot be removed\n\n";
+			}
 			
 			break;
 		case 3://DISPLAY
@@ -87,6 +99,9 @@ int main() {
 
 			//display calculation
 			//grab from list and display
+			cout << accountList;
+			cout << "\nEnter to Continue\n";
+			getline(cin, hold);
 			break;
 		case 4:
 			cout << "THANK YOU!\n";

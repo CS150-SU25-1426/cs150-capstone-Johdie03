@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 #ifndef BUDGET_H
 #define BUDGET_H
@@ -15,10 +16,10 @@ class Budget {
         double mCurrentSavings;
 
     public:
-        Budget(string name, double income= 0.0, double expenses= 0.0, double targetSavings= 0.0, double currentSavaings = 0.0);
+        Budget(string name, double income= 0.0, double expenses= 0.0, double targetSavings= 0.0, double currentSavings = 0.0);
 
-        string getName() const {return mName; }
         int getAccNum() const { return mAccNum; }
+        string getName() const {return mName; }
         double getIncome() const { return mIncome; }
         double getExpenses() const { return mExpenses; }
         double getTargetSavings() const { return mTargetSavings; }
